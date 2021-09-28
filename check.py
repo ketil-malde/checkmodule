@@ -70,10 +70,9 @@ def check_project_class(dir):
 
 # something something __main__
 
-modules = [
-    '--branch standardize https://github.com/ketil-malde/maskrcnn-docker',
-    'git@git.imr.no:endrem/imr_ml_datastore.git'
-    ]
+with open('modules.txt') as file:
+    ls = file.readlines()
+    modules = [line.rstrip() for line in ls]
 
 def check_repo(repo):
     global WARN

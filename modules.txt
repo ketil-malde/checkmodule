@@ -1,0 +1,2 @@
+--branch standardize https://github.com/ketil-malde/maskrcnn-docker
+git@git.imr.no:endrem/imr_ml_datastore.git
