@@ -51,9 +51,13 @@ modules = [
     ]
 
 for repo in modules:
+    W=WARN
+    E=ERR
     dirname = os.path.basename(repo) # does this work?
     os.system(f'git clone {repo} tmp/{dirname}')
     check_module('tmp/'+dirname)
+    if W==WARN and E==ERR:
+        print(f'\033[92m{dirname}:\033[0m no warning or errors')
 
 print(f'\nTotal number of warnings: {WARN}\nTotal number of errors: {ERR}')
     
