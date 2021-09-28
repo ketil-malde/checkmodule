@@ -2,6 +2,7 @@
 
 import os
 import os.path
+import sys
 
 ERR=0
 WARN=0
@@ -15,8 +16,6 @@ def error(dir, str):
     global ERR
     print('\033[91mERROR: '+dir+': \033[0m'+str)
     ERR+=1
-
-import sys
 
 def check_module(dir):
     '''Verify that the python module exists, and go to next check'''
@@ -38,23 +37,35 @@ def check_module(dir):
 def check_data_class(dir):
     '''Check properties of the Data object'''
     print('Found data component: ',dir)
-    import Data
-    d = Data.Data()
+    try:
+        import Data
+        d = Data.Data()
+    except:
+        error(dir, "couldn't instantiate Data")
+        return
     print(dir(d))
     #check that d has get() and validate()
 
 def check_model_class(dir):
     '''Check properties of the Model object'''
     print('Found model component: ',dir)
-    import Model
-    m = Model.Model()
+    try:
+        import Model
+        m = Model.Model()
+    except:
+        error(dir, "couldn't instantiate Model")
+        return
     print(dir(m))
 
 def check_project_class(dir):
     '''Check properties of the Project object'''
     print('Found project component: ', dir)
-    import Project
-    p = Project.Project()
+    try:
+        import Project
+        p = Project.Project()
+    except:
+        error(dir, "couldn't instantiate Project")
+        return
     print(dir(p))
 
 # something something __main__
