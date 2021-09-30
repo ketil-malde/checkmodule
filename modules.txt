@@ -1,2 +1,4 @@
 --branch standardize https://github.com/ketil-malde/maskrcnn-docker
 git@git.imr.no:endrem/imr_ml_datastore.git
+https://git.imr.no/a5515/imr_ml_data_vaneeda
+https://git.imr.no/a5515/keras-retinanet

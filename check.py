@@ -32,7 +32,7 @@ def check_module(mydir):
         check_project_class(mydir)
     else:
         error(mydir,'does not seem to be a component')
-        print(files)
+        print('files:' files)
     sys.path.remove(mydir)
 
 data_methods = ['get', 'validate']
@@ -84,7 +84,9 @@ def check_repo(repo):
     E=ERR
     check_module(repo)
     if W==WARN and E==ERR:
-        print(f'\033[92m{repo}:\033[0m no warning or errors')
+        print(f'\033[92m{repo}:\033[0m no warnings or errors')
+    else:
+        print(f'\033[93m{repo}:\033[0m {WARN-W} warnings and {ERR-E} errors')
 
 if __name__ == '__main__':
 
@@ -100,7 +102,6 @@ if __name__ == '__main__':
     else:
         modules = sys.argv[1:]
 
-    print(modules)
     for repo in modules:
         check_repo(repo)
         print('--------------------')
