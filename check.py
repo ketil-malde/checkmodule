@@ -8,21 +8,21 @@ import sys
 ERR=0
 WARN=0
 
-def warn(dir, str):
+def warn(mydir, mystr):
     global WARN
-    print('\033[93mWARNING: '+dir+': \033[0m'+str)
+    print('\033[93mWARNING: '+mydir+': \033[0m'+mystr)
     WARN+=1
 
-def error(dir, str):
+def error(mydir, mystr):
     global ERR
-    print('\033[91mERROR: '+dir+': \033[0m'+str)
+    print('\033[91mERROR: '+mydir+': \033[0m'+mystr)
     ERR+=1
 
 def check_module(mydir):
     '''Verify that the python module exists, and go to next check'''
     files = os.listdir(mydir)
     if 'README.md' not in files:
-        warn(dir, 'README is missing')
+        warn(mydir, 'README is missing')
     sys.path.insert(1, mydir)
     if 'Data.py' in files:
         check_data_class(mydir)
@@ -32,7 +32,7 @@ def check_module(mydir):
         check_project_class(mydir)
     else:
         error(mydir,'does not seem to be a component')
-        print('files:' files)
+        print('files:', files)
     sys.path.remove(mydir)
 
 data_methods = ['get', 'validate']
@@ -41,10 +41,10 @@ project_methods = []
 
 def check_data_class(mydir):
     '''Check properties of the Data object'''
-    print('Found data component: ',mydir)
+    print('Found data component: ', mydir)
     try:
         import Data
-        d = Data.Data()
+        d = Data.Data(name='???') #wtf?
     except:
         error(mydir, "couldn't instantiate Data")
         return
@@ -74,7 +74,6 @@ def check_project_class(mydir):
     except:
         error(mydir, "couldn't instantiate Project")
         return
-    print(dir(p))
 
 def check_repo(repo):
     print(repo)
