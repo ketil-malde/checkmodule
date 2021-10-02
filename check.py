@@ -37,43 +37,49 @@ def check_module(mydir):
 
 data_methods = ['get', 'validate']
 model_methods = ['train', 'test']
-project_methods = []
+project_methods = ['get_data', 'train_model']
+
+import logging
 
 def check_data_class(mydir):
     '''Check properties of the Data object'''
     print('Found data component: ', mydir)
     try:
         import Data
-        d = Data.Data(name='???') #wtf?
+        d = Data.Data({}, '')
     except:
         error(mydir, "couldn't instantiate Data")
+        logging.excpetion("couldn't instantiate Data")
         return
     ms = [m for m in data_methods if not m in dir(d)]
     if ms != []:
         error(mydir, f'missing Data methods: {ms}')
-
+        
 def check_model_class(mydir):
     '''Check properties of the Model object'''
     print('Found model component: ',mydir)
     try:
         import Model
-        mod = Model.Model()
+        mod = Model.Model({}, '')
     except:
         error(mydir, "couldn't instantiate Model")
+        logging.exception("couldn't instantiate Model")        
         return
     ms = [m for m in model_methods if m not in dir(mod)]
     if ms != []:
         error(mydir, f'missing Model methods: {ms}')
-
+        
 def check_project_class(mydir):
     '''Check properties of the Project object'''
     print('Found project component: ', mydir)
     try:
         import Project
-        p = Project.Project()
+        p = Project.Project({})
     except:
         error(mydir, "couldn't instantiate Project")
+        logging.exception("couldn't instantiate Model")
         return
+    del Project
 
 def check_repo(repo):
     print(repo)
@@ -88,22 +94,9 @@ def check_repo(repo):
         print(f'\033[93m{repo}:\033[0m {WARN-W} warnings and {ERR-E} errors')
 
 if __name__ == '__main__':
-
-    if len(sys.argv) == 1:
-        modules = []
-        with open('modules.txt') as file:
-            ls = file.readlines()
-            repos = [line.rstrip() for line in ls]
-        for repo in repos:
-            dirname = os.path.basename(repo) # does this work?
-            os.system(f'git clone {repo} tmp/{dirname}')
-            modules.append(f'tmp/{dirname}')
+    if len(sys.argv) == 2:
+        check_repo(sys.argv[1])
     else:
-        modules = sys.argv[1:]
+        print(f'Usage {argv[0]} <repository>')
 
-    for repo in modules:
-        check_repo(repo)
-        print('--------------------')
-
-print(f'\nTotal number of warnings: {WARN}\nTotal number of errors: {ERR}')
 
