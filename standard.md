@@ -28,6 +28,7 @@ Configuration information should be stored in a shared dictionary, and modules a
 * get/test smaller test cases - check workings/overfit?
 * run (predict) on infinite data (can’t store locally)
 * versioning
+* dealing with Jupyter notebooks
 
 # The Project component
 
