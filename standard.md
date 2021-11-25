@@ -30,6 +30,8 @@ Configuration information should be stored in a shared dictionary, and modules a
 * versioning
 * dealing with Jupyter notebooks
 
+* should we merge setup() into __init__()?
+
 # The Project component
 
 A project component is a Git repository which clones one or more data components and one or more model components, and implements the process of linking them together. 

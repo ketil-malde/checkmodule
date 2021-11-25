@@ -1,7 +1,10 @@
---branch standardize git@github.com:ketil-malde/maskrcnn-docker
 git@git.imr.no:endrem/imr_ml_datastore.git
 git@git.imr.no:a5515/imr_ml_data_vaneeda
 git@git.imr.no:a5515/keras-retinanet
+--branch standardize git@github.com:ketil-malde/maskrcnn-docker
 --branch standardize git@github.com:ketil-malde/Pytorch-UNet
 git@github.com:ketil-malde/blue-mussel-drone-testdata
 git@github.com:ketil-malde/unet-blue-mussel-images
+git@github.com:ketil-malde/corkwing-data
+git@github.com:ketil-malde/yolov5-corkwing-images
+git@github.com:ketil-malde/yolov5
